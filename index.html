@@ -18,18 +18,25 @@
     <header>
       <div class="leftMenu bg-dark p-3 d-flex align-content-between flex-wrap">
         <div class="nav-item">
+          <!-- 
+                now_playing
+                popular
+                top_rated
+                upcoming
+
+             -->
           <ul>
             <li class="item1">
-              <a href="#">Now playing</a>
+              <a href="#" movieTitle='now_playing'>Now playing</a>
             </li>
             <li class="item2">
-              <a href="#">Popular</a>
+              <a href="#" movieTitle='popular'>Popular</a>
             </li>
             <li class="item3">
-              <a href="#">Top Rated</a>
+              <a href="#" movieTitle='top_rated'>Top Rated</a>
             </li>
             <li class="item4">
-              <a href="#">Upcoming</a>
+              <a href="#" movieTitle='upcoming'>Upcoming</a>
             </li>
             <li class="item5">
               <a href="#">News</a>
@@ -59,26 +66,28 @@
     </header>
 
     <!-- Movies Section -->
-    <!-- <section class="movies p-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <input class="form-control bg-dark" id=searchByWord placeholder="Get Movies By Word....">
-                </div>
-                <div class="col-md-6">
-                    <input class="form-control bg-dark" id="search" placeholder="Search....">
-                </div>
-            </div>
-            <div class="row my-5" id="searchResult">
-          
-            </div>
-            <div class="row my-5" id="movies-container">
-          
-            </div>
-         
-         
+    <section class="movies p-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <input
+              class="form-control bg-dark"
+              id="searchByWord"
+              placeholder="Get Movies By Word...."
+            />
+          </div>
+          <div class="col-md-6">
+            <input
+              class="form-control bg-dark"
+              id="search"
+              placeholder="Search...."
+            />
+          </div>
         </div>
-    </section> -->
+        <div class="row my-5" id="searchResult"></div>
+        <div class="row my-5" id="movies-container"></div>
+      </div>
+    </section>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
