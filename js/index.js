@@ -2,6 +2,9 @@ const leftMenu = $('.leftMenu');
 const rightMenu = $('.rightMenu');
 const triggle = $('#triggle');
 const menuItems = $('.nav-item li');
+const searchByWord = document.getElementById('searchByWord');
+const search = document.getElementById('search');
+const searchResultContainer = $('#searchResult');
 
 triggle.click(function () {
   let leftMenuWidth = leftMenu.outerWidth();
@@ -35,28 +38,28 @@ const getMovies = async (categoryItem = 'now_playing') => {
   // console.log(response);
   allMovies = response.results;
   // console.log(allMovies);
-  displayMovies();
+  displayMovies(allMovies, moviesContainer);
 };
 
 getMovies();
 
-const displayMovies = () => {
+const displayMovies = (arrayList, container) => {
   let temp = '';
-  for (let i = 0; i < allMovies.length; i++) {
+  for (let i = 0; i < arrayList.length; i++) {
     temp += `
     <div class="col-md-4 mb-4">
       <div class="movie-item">
-        <img class="img-fluid" src="${imgPath}${allMovies[i].poster_path}" alt="${allMovies[i].title}" />
+        <img class="img-fluid" src="${imgPath}${arrayList[i].poster_path}" alt="${arrayList[i].title}" />
         <div class="layer">
-          <h3>${allMovies[i].title}</h3>
-          <p>${allMovies[i].overview}</p>
-          <p>Rate ${allMovies[i].vote_average}</p>
-          <p>${allMovies[i].release_date}</p>
+          <h3>${arrayList[i].title}</h3>
+          <p>${arrayList[i].overview}</p>
+          <p>Rate ${arrayList[i].vote_average}</p>
+          <p>${arrayList[i].release_date}</p>
         </div>
       </div>
     </div>`;
   }
-  moviesContainer.html(temp);
+  container.html(temp);
 };
 
 let menuLinks = document.querySelectorAll('.nav-item ul a');
@@ -67,3 +70,23 @@ for (let i = 0; i < menuLinks.length; i++) {
     getMovies(category);
   });
 }
+
+let searchResultArray = [];
+searchByWord.addEventListener('keyup', () => {
+  searchWord(searchByWord.value);
+});
+
+const searchWord = async query => {
+  if (query == '') {
+    searchResult.innerHTML = '';
+    return;
+  }
+  let response = await fetch(
+    `https://api.themoviedb.org/3/search/movie?api_key=8613e4e1776af4e8633cc311d67b3e09&language=en-US&query=${query}&page=1&include_adult=false`
+  );
+  response = await response.json();
+  searchResultArray = response.results;
+  displayMovies(searchResultArray, searchResultContainer);
+};
+
+// search.addEventListener('keyup', () => {});
